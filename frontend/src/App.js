@@ -4,9 +4,7 @@ import TaskTable from './TaskTable'
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <TaskTable/>
-      </header>
+      <TaskTable/>
     </div>
   );
 }
