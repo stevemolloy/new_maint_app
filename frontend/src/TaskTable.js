@@ -35,7 +35,7 @@ const TaskTable = () => {
         {taskData.map((item, i) => {
           return (
             <tr key={item.id}>
-              <td>{i}</td>
+              <td>{i+1}</td>
               <td>{item.week_number}</td>
               <td>{item.reporter}</td>
               <td>{item.where}</td>
