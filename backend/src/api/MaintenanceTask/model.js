@@ -2,10 +2,10 @@ import mongoose, { Schema } from 'mongoose'
 
 const maintenanceTaskSchema = new Schema({
   datetime: { type: Date, required: true },
-  reporter: { type: String, required: true, max: 128 },
-  fixer: { type: String, max: 128 },
-  where: { type: String, max: 128 },
-  task: { type: String, max: 8192 },
+  reporter: { type: String, required: true },
+  fixer: { type: String },
+  where: { type: String },
+  task: { type: String },
   starttime: String,
   endtime: String,
   approved: Boolean,
