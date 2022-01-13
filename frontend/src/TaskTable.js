@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 var _ = require('lodash');
 
-const TaskTable = () => {
+const TaskTable = (props) => {
   const [taskData, setTaskData] = useState([]);
 
   const URL = "http://0.0.0.0:9000/MaintenanceTasks";
@@ -13,7 +13,22 @@ const TaskTable = () => {
       .then((res) => res.json())
       .then((json) => {
           if (!_.isEqual(taskData, json)) {
-            setTaskData(json);
+            if (props.where && props.week_number) {
+              setTaskData(json.filter((el) => {
+                return el.where == props.where &&
+                        el.week_number == props.week_number;
+              }));
+            }
+            else if (props.where) {
+              setTaskData(json.filter((el) => {
+                return el.where == props.where;
+              }));
+            }
+            else if (props.week_number) {
+              setTaskData(json.filter((el) => {
+                return el.week_number == props.week_number;
+              }));
+            }
           }
         })
   });
