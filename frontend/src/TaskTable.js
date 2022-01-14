@@ -12,23 +12,12 @@ const TaskTable = (props) => {
     fetch(URL)
       .then((res) => res.json())
       .then((json) => {
-          var filtered_array = json;
-          if (props.where && props.week_number) {
-            filtered_array = json.filter( el => {
-              return el.where === props.where &&
-                      el.week_number === props.week_number;
-            });
-          }
-          else if (props.where) {
-            filtered_array = json.filter( el => {
-              return el.where === props.where;
-            });
-          }
-          else if (props.week_number) {
-            filtered_array = json.filter( el => {
-              return el.week_number === props.week_number;
-            });
-          }
+          var filtered_array = json.filter( el => {
+            for (const [key, value] of Object.entries(props)) {
+              if (key in el && el[key] !== value) return false;
+            }
+            return true;
+          });
           if (!_.isEqual(taskData, filtered_array)) {
             setTaskData(filtered_array);
           }
