@@ -10,6 +10,7 @@ const maintenanceTaskSchema = new Schema({
   endtime: String,
   approved: Boolean,
   week_number: { type: Number },
+  year: { type: Number },
   archived: { type: Boolean, default: false },
   done: { type: Boolean, default: false}
 }, {
