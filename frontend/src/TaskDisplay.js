@@ -7,7 +7,7 @@ function TaskDisplay() {
   console.log(weeknum);
   return (
     <div>
-      <h3>Requested topic ID: {weeknum}</h3>
+      <h3>Data for week number #{weeknum}</h3>
       <h2>Linac</h2>
       <TaskTable where='linac' week_number={weeknum}/>
       <h2>SPF</h2>
