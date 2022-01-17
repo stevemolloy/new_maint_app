@@ -14,7 +14,7 @@ const TaskTable = (props) => {
       .then((json) => {
           var filtered_array = json.filter( el => {
             for (const [key, value] of Object.entries(props)) {
-              if (key in el && el[key] !== value) return false;
+              if (key in el && el[key].toString() !== value) return false;
             }
             return true;
           });
