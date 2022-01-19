@@ -21,7 +21,7 @@ const TaskTable = (props) => {
           if (!_.isEqual(taskData, filtered_array)) {
             setTaskData(filtered_array);
           }
-        })
+        });
   });
 
   return (
@@ -51,11 +51,11 @@ const TaskTable = (props) => {
               <td>{item.task}</td>
               <td>{item.done ? yes : no}</td>
             </tr>
-            )
+            );
           })}
       </table>
     </div>
   );
-}
+};
 
 export default TaskTable;
