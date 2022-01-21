@@ -1,10 +1,16 @@
-import mongoose, { Schema } from 'mongoose'
+import mongoose, { Schema } from 'mongoose';
 
 const maintenanceTaskSchema = new Schema({
   datetime: { type: Date, required: true },
   reporter: { type: String, required: true },
   fixer: { type: String },
-  where: { type: String },
+  linac: Boolean,
+  R11: Boolean,
+  R12: Boolean,
+  R31: Boolean,
+  R3235: Boolean,
+  spf: Boolean,
+  other: Boolean,
   task: { type: String },
   starttime: String,
   endtime: String,
@@ -17,9 +23,9 @@ const maintenanceTaskSchema = new Schema({
   timestamps: true,
   toJSON: {
     virtuals: true,
-    transform: (obj, ret) => { delete ret._id }
+    transform: (obj, ret) => { delete ret._id; }
   }
-})
+});
 
 maintenanceTaskSchema.methods = {
   view (full) {
@@ -39,16 +45,16 @@ maintenanceTaskSchema.methods = {
       done: this.done,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
-    }
+    };
 
     return full ? {
       ...view
       // add properties for a full view
-    } : view
+    } : view;
   }
-}
+};
 
-const model = mongoose.model('MaintenanceTask', maintenanceTaskSchema)
+const model = mongoose.model('MaintenanceTask', maintenanceTaskSchema);
 
-export const schema = model.schema
-export default model
+export const schema = model.schema;
+export default model;

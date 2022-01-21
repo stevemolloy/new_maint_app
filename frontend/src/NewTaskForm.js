@@ -5,7 +5,13 @@ const NewTaskForm = (props) => {
     datetime: '',
     reporter: '',
     fixer: '',
-    where: '',
+    linac: false,
+    R11: false,
+    R12: false,
+    R31: false,
+    R3235: false,
+    spf: false,
+    other: false,
     task: '',
     starttime: '',
     endtime: '',
@@ -77,43 +83,64 @@ const NewTaskForm = (props) => {
           Linac:<input type="checkbox"
             value='Linac'
             name='location'
-            onChange={(e) => console.log(e.target)}
+            onChange={(e) => {
+              const accessAllowed = !formData.linac;
+              setFormData({...formData, linac: accessAllowed});
+            }}
           />
           <br/>
           R11:<input type="checkbox"
             value='R11'
             name='location'
-            onChange={(e) => console.log(e.target)}
+            onChange={(e) => {
+              const accessAllowed = !formData.r11;
+              setFormData({...formData, r11: accessAllowed});
+            }}
           />
           <br/>
           R12:<input type="checkbox"
             value='R12'
             name='location'
-            onChange={(e) => console.log(e.target)}
+            onChange={(e) => {
+              const accessAllowed = !formData.r12;
+              setFormData({...formData, r12: accessAllowed});
+            }}
           />
           <br/>
           R31:<input type="checkbox"
             value='R31'
             name='location'
-            onChange={(e) => console.log(e.target)}
+            onChange={(e) => {
+              const accessAllowed = !formData.r31;
+              setFormData({...formData, r31: accessAllowed});
+            }}
           />
           <br/>
           R32-35:<input type="checkbox"
             value='R32-35'
             name='location'
-            onChange={(e) => console.log(e.target)}
+            onChange={(e) => {
+              const accessAllowed = !formData.r3235;
+              setFormData({...formData, r3235: accessAllowed});
+            }}
           />
           <br/>
           SPF:<input type="checkbox"
             value='SPF'
             name='location'
-            onChange={(e) => console.log(e.target)}
+            onChange={(e) => {
+              const accessAllowed = !formData.spf;
+              setFormData({...formData, spf: accessAllowed});
+            }}
           />
           <br/>
           Other:<input type="checkbox"
             value='Other'
             name='location'
-            onChange={(e) => console.log(e.target)}
+            onChange={(e) => {
+              const accessAllowed = !formData.other;
+              setFormData({...formData, other: accessAllowed});
+            }}
           />
           <br/>
         </label>
