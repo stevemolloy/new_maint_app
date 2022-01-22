@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const NewTaskForm = (props) => {
   const [formData, setFormData] = useState({
-    datetime: '',
+    datetime: '2022-01-22',
     reporter: '',
     fixer: '',
     linac: false,
@@ -15,16 +15,21 @@ const NewTaskForm = (props) => {
     task: '',
     starttime: '',
     endtime: '',
-    approved: '',
+    approved: false,
     week_number: '',
     year: '',
-    archived: '',
-    done: ''
+    archived: false,
+    done: false
   });
 
+  const URL = "http://0.0.0.0:9000/Maintenancetasks";
   const handleSubmit = (event) => {
+    fetch(URL, {
+      method: 'POST',
+	    body: JSON.stringify(formData),
+      headers: {'Content-Type': 'application/json'}
+    });
     event.preventDefault();
-    console.log(formData);
   };
 
   return (

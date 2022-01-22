@@ -4,7 +4,7 @@ var _ = require('lodash');
 const TaskTable = (props) => {
   const [taskData, setTaskData] = useState([]);
 
-  const URL = "http://0.0.0.0:9000/MaintenanceTasks";
+  const URL = "http://0.0.0.0:9000/Maintenancetasks";
   const yes = "\u2714";
   const no = "\u274C";
 
