@@ -24,6 +24,7 @@ export default function App() {
 
         <Routes>
           <Route path="/tasklist/:weeknum" element={<TaskDisplay />} />
+          <Route path="/tasklist/" element={<TaskDisplay />} />
           <Route path="/" element={<NewTaskForm />} />
         </Routes>
       </div>
