@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { weekNumber } from 'weeknumber';
 
 const NewTaskForm = (props) => {
   const [formData, setFormData] = useState({
@@ -21,7 +22,7 @@ const NewTaskForm = (props) => {
     done: false
   });
 
-  const current_week_number = 6;
+  const current_week_number = weekNumber(new Date());
   const number_of_weeks = 15;
   var week_number_list = [];
   for (var i=1; i<number_of_weeks; i++)
