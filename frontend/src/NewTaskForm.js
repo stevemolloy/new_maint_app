@@ -16,7 +16,6 @@ const NewTaskForm = (props) => {
     starttime: '',
     endtime: '',
     approved: false,
-    week_number: [],
     year: 2022,
     archived: false,
     done: false
@@ -25,7 +24,8 @@ const NewTaskForm = (props) => {
   const current_week_number = 6;
   const number_of_weeks = 15;
   var week_number_list = [];
-  for (var i=1; i<number_of_weeks; i++) week_number_list.push(current_week_number + i);
+  for (var i=1; i<number_of_weeks; i++)
+    week_number_list.push(current_week_number + i);
 
   const [checked, setChecked] = useState(
     Object.assign({}, ...week_number_list.map( item => ({[item]: false})))
@@ -33,16 +33,14 @@ const NewTaskForm = (props) => {
 
   const URL = "http://0.0.0.0:9000/Maintenancetasks";
   const handleSubmit = (event) => {
-    let formWeekNums = week_number_list.filter( item => checked[item] );
+    const formWeekNums = week_number_list.filter( item => checked[item] );
     formWeekNums.forEach( item => {
-      console.log({...formData, week_number: item});
+      fetch(URL, {
+        method: 'POST',
+	      body: JSON.stringify({...formData, week_number: item}),
+        headers: {'Content-Type': 'application/json'}
+      });
     });
-
-    //fetch(URL, {
-    //  method: 'POST',
-	  // body: JSON.stringify(formData),
-    //  headers: {'Content-Type': 'application/json'}
-    //});
     event.preventDefault();
   };
 
@@ -88,14 +86,6 @@ const NewTaskForm = (props) => {
           Week number(s):
           <br/>
           {week_num_boxes}
-          Linac:<input type="checkbox"
-            value='Linac'
-            name='location'
-            onChange={(e) => {
-              const accessAllowed = !formData.linac;
-              setFormData({...formData, linac: accessAllowed});
-            }}
-          />
         </label>
         </div>
         <div>
