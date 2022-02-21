@@ -22,11 +22,14 @@ const NewTaskForm = (props) => {
     done: false
   });
 
+  const date = new Date();
   const current_week_number = weekNumber(new Date());
-  const number_of_weeks = 15;
+  const number_of_weeks = 16;
   var week_number_list = [];
-  for (var i=1; i<number_of_weeks; i++)
-    week_number_list.push(current_week_number + i);
+  for (var i=1; i<number_of_weeks; i++) {
+    date.setDate(date.getDate() + 7);
+    week_number_list.push(weekNumber(date));
+  }
 
   const [checked, setChecked] = useState(
     Object.assign({}, ...week_number_list.map( item => ({[item]: false})))
