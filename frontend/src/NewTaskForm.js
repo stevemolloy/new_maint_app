@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const NewTaskForm = (props) => {
   const [formData, setFormData] = useState({
-    datetime: '2022-01-22',
+    datetime: '2022-02-09',
     reporter: '',
     fixer: '',
     linac: false,
@@ -16,21 +16,50 @@ const NewTaskForm = (props) => {
     starttime: '',
     endtime: '',
     approved: false,
-    week_number: '',
-    year: '',
+    week_number: [],
+    year: 2022,
     archived: false,
     done: false
   });
 
+  const current_week_number = 6;
+  const number_of_weeks = 15;
+  var week_number_list = [];
+  for (var i=1; i<number_of_weeks; i++) week_number_list.push(current_week_number + i);
+
+  const [checked, setChecked] = useState(
+    Object.assign({}, ...week_number_list.map( item => ({[item]: false})))
+  );
+
   const URL = "http://0.0.0.0:9000/Maintenancetasks";
   const handleSubmit = (event) => {
-    fetch(URL, {
-      method: 'POST',
-	    body: JSON.stringify(formData),
-      headers: {'Content-Type': 'application/json'}
+    let formWeekNums = week_number_list.filter( item => checked[item] );
+    formWeekNums.forEach( item => {
+      console.log({...formData, week_number: item});
     });
+
+    //fetch(URL, {
+    //  method: 'POST',
+	  // body: JSON.stringify(formData),
+    //  headers: {'Content-Type': 'application/json'}
+    //});
     event.preventDefault();
   };
+
+  const handleWeekCheckboxes = (e) => {
+    let currentStatus = checked;
+    currentStatus[e.target.value] = !currentStatus[e.target.value];
+    setChecked(currentStatus);
+  };
+
+  const week_num_boxes = week_number_list.map((item, i) =>{
+    return (<div key={item}>{item}: <input
+        type="checkbox"
+        value={item}
+        onChange={handleWeekCheckboxes}
+      /></div>
+    );
+  });
 
   return (
     <div>
@@ -56,10 +85,16 @@ const NewTaskForm = (props) => {
         </div>
         <div>
         <label>
-          Week number:
-          <input type="text"
-            value={formData.week_number}
-            onChange={(e) => setFormData({...formData, week_number: e.target.value})}
+          Week number(s):
+          <br/>
+          {week_num_boxes}
+          Linac:<input type="checkbox"
+            value='Linac'
+            name='location'
+            onChange={(e) => {
+              const accessAllowed = !formData.linac;
+              setFormData({...formData, linac: accessAllowed});
+            }}
           />
         </label>
         </div>
