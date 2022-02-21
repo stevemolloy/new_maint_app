@@ -61,7 +61,7 @@ const NewTaskForm = (props) => {
 
   return (
     <div>
-      <h1>New Task Form Placeholder</h1>
+      <h1>Submit a new maintenance task</h1>
       <form onSubmit={handleSubmit}>
         <div>
         <label>
