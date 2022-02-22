@@ -23,7 +23,6 @@ const NewTaskForm = (props) => {
   });
 
   const date = new Date();
-  const current_week_number = weekNumber(new Date());
   const number_of_weeks = 16;
   var week_number_list = [];
   for (var i=1; i<number_of_weeks; i++) {
